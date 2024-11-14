@@ -47,6 +47,7 @@ describe("test LineString", () => {
             new Point([6., 9.])]
         )
         const copy = l.clone();
+        expect(l).to.deep.equal(copy);
         copy.translate(1., 2.);
         expect(l).to.deep.equal(
             new LineString([

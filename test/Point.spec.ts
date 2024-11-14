@@ -35,10 +35,17 @@ describe("test Point", () => {
     it("test clone", () => {
         const p = new Point([3.0,4.0]);
         const copy = p.clone();
+        expect(p).to.deep.equal(copy);
+        copy.translate(1., 2);
         expect(p).to.deep.equal(
             new Point([3.0,4.0])
         );
+        expect(p).to.not.deep.equal(copy);
     });
+    it("test clone, case emty", () => {
+        const p = new Point();
+        const copy = p.clone();
+        expect(p).to.not.equal(copy);});
 });
 
 
