@@ -5,5 +5,5 @@
         "target": "es5",
         "allowJs": true
     },
-    "include": ["src/**/*"],
+    "include": ["src/**/*", "test/Geometry.spec.ts", "test/LineString.spec.ts"],
 }
