@@ -17,20 +17,20 @@ export default class Envelope {
     }
 
     getXmin(): number {
-        return Math.min(this.bottomLeft[0], this.topRight[0]);
+        return this.bottomLeft[0];
     }
     getYmin(): number {
-        return Math.min(this.bottomLeft[1], this.topRight[1]);
+        return this.bottomLeft[1];
     }
     getXmax(): number {
-        return Math.max(this.bottomLeft[0], this.topRight[0]);
+        return this.topRight[0];
     }
     getYmax(): number {
-        return Math.max(this.bottomLeft[1], this.topRight[1]);
+        return  this.topRight[1];
     }
     toString(): string {
-        return `Voci l'empbrise de la bbox: 
-        (${this.getXmin()}, ${this.getYmin()}
-        , ${this.getXmax()}, ${this.getYmax()})`;
+        return `Voci l'emprise de la bbox: 
+        (${this.getXmin()}, ${this.getYmin()},
+        ${this.getXmax()}, ${this.getYmax()})`;
     }
 }
