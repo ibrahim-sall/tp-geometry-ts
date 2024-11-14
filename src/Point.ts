@@ -27,4 +27,10 @@ export default class Point implements Geometry {
     return this.coordinate && this.coordinate.length > 0 ? this.coordinate[1] : Number.NaN;
   }
 
+  translate( dx :number, dy:number): void {
+    if (!this.isEmpty()){
+      this.coordinate[0] += dx;
+      this.coordinate[1] += dy;
+    }
+  }
 }

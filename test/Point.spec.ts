@@ -15,6 +15,23 @@ describe("test Point", () => {
         expect(p.x()).to.equal(3.0);
         expect(p.y()).to.equal(4.0);
     });
+    it("test getType", () => {
+        const p = new Point();
+        expect(p.getType()).to.equal("Point");
+    });
+    it("test isEmpty, case emty", () => {
+        const p = new Point();
+        expect(p.isEmpty()).to.equal(true);
+    })
+    it("test isEmpty, case not emty", () => {
+        const p = new Point([3.0,4.0]);
+        expect(p.isEmpty()).to.equal(false);
+    })
+    it("test translate", () => {
+        const p = new Point([3.0,4.0]);
+        p.translate(4., 5.);
+        expect(p).to.deep.equal(new Point([7., 9.]));
+    })
 });
 
 
