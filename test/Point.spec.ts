@@ -22,16 +22,23 @@ describe("test Point", () => {
     it("test isEmpty, case emty", () => {
         const p = new Point();
         expect(p.isEmpty()).to.equal(true);
-    })
+    });
     it("test isEmpty, case not emty", () => {
         const p = new Point([3.0,4.0]);
         expect(p.isEmpty()).to.equal(false);
-    })
+    });
     it("test translate", () => {
         const p = new Point([3.0,4.0]);
         p.translate(4., 5.);
         expect(p).to.deep.equal(new Point([7., 9.]));
-    })
+    });
+    it("test clone", () => {
+        const p = new Point([3.0,4.0]);
+        const copy = p.clone();
+        expect(p).to.deep.equal(
+            new Point([3.0,4.0])
+        );
+    });
 });
 
 
