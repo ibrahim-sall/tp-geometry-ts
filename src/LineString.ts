@@ -17,7 +17,7 @@ export default class LineString implements Geometry {
         return this.points ? this.points.length : 0;
     }
     getPointN(n:number) : Point {
-        return this.points ? this.points[n] : null;
+        return this.points ? this.points[n] : undefined;
         }
     getType() :string {
         return "LineString";
