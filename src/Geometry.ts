@@ -5,4 +5,5 @@ export default interface Geometry {
     translate(dx: number, dy:number): void;
     clone() : Geometry;
     accept(visitor: GeometryVisitor): void;
+    asText(): Promise<string>; //format WKT
 }

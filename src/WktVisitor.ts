@@ -7,6 +7,12 @@ export default class WktVisitor implements GeometryVisitor {
     buffer : string;
     constructor(){
         this.buffer = "";
+        if (this instanceof Point){
+            this.visitPoint(this);
+        }
+        if (this instanceof LineString){
+            this.visitLineString(this);
+        }
     }
     getResult() :string{
         return this.buffer;
