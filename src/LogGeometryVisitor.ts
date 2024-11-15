@@ -12,7 +12,7 @@ export default class LogGeometryVisitor implements GeometryVisitor {
         }
     }
 
-    visitLine(lineString : LineString): void {
+    visitLineString(lineString : LineString): void {
         if (lineString.isEmpty()) {
             console.log("Je suis une polyligne vide.");
         } else {

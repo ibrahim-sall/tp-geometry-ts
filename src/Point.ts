@@ -1,5 +1,6 @@
 import Coordinate from "./Coordinate";
 import Geometry from "./Geometry";
+import GeometryVisitor from "./GeometryVisitor";
 
 export default class Point implements Geometry {
   private coordinate?: Coordinate;
@@ -39,6 +40,9 @@ export default class Point implements Geometry {
       return new Point();
     }
     return new Point([this.x(), this.y()]);
+  }
+  accept(visitor: GeometryVisitor): void {
+    visitor.visitPoint(this);
   }
   
 }

@@ -5,5 +5,5 @@
         "target": "es5",
         "allowJs": true
     },
-    "include": ["src/**/*", "test/Geometry.spec.ts", "test/LineString.spec.ts", "test/Envelope.spec.ts"],
+    "include": ["src/**/*", "test/Geometry.spec.ts", "test/LineString.spec.ts", "test/Envelope.spec.ts", "test/WktVisitor.spec.ts"],
 }

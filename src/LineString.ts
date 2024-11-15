@@ -1,6 +1,7 @@
 
 import Geometry from "./Geometry";
 import Point from "./Point";
+import GeometryVisitor from "./GeometryVisitor";
 
 
 export default class LineString implements Geometry {
@@ -43,6 +44,9 @@ export default class LineString implements Geometry {
         }
         return copy;
     }
+    accept(visitor: GeometryVisitor): void {
+        visitor.visitLineString(this);
+      }
 
 
 
