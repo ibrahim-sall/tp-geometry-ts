@@ -1,29 +1,24 @@
 import GeometryVisitor from "./GeometryVisitor";
 import Point from "./Point";
 import LineString from "./LineString";
-import WktWriter from "./WktWriter";
 
 export default class WktVisitor implements GeometryVisitor {
     buffer : string;
-    constructor(){
-        this.buffer = "";
-        if (this instanceof Point){
-            this.visitPoint(this);
-        }
-        if (this instanceof LineString){
-            this.visitLineString(this);
-        }
-    }
     getResult() :string{
-        return this.buffer;
+        return this.buffer;  
     }
     visitPoint(point: Point): void {
-        const writer = new WktWriter();
-
-        this.buffer += writer.write(point);
+        this.buffer =  point.getType().toUpperCase() + "(" + point.x().toFixed(1) + " " + point.y().toFixed(1) + ")";
     }
     visitLineString(lineString : LineString): void {
-        const writer = new WktWriter();
-        this.buffer += writer.write(lineString);
+        let wkt = "";
+        for (let i = 0; i < lineString.getNumPoints(); i++){
+        const point = lineString.getPointN(i);
+        wkt += point.x().toFixed(1) + " " + point.y().toFixed(1);
+        if (i < lineString.getNumPoints() - 1){
+            wkt += ",";
+        }
+        }
+        this.buffer =  lineString.getType().toUpperCase() + "(" + wkt + ")";
     }
 }

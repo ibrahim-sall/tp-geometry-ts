@@ -4,8 +4,7 @@ import GeometryVisitor from "./GeometryVisitor";
 
 export default class Point extends AbstractGeometry {
   private coordinate?: Coordinate;
-  constructor();
-  constructor(coordinate: Coordinate);
+  
   constructor(coordinate?: Coordinate) {
     super();
     this.coordinate = coordinate ?? [];

@@ -1,6 +1,6 @@
 import Geometry from './Geometry';
-
 import GeometryVisitor from './GeometryVisitor';
+import WktVisitor from './WktVisitor';
 
 export default abstract class AbstractGeometry implements Geometry {
     abstract getType(): string;
@@ -8,10 +8,10 @@ export default abstract class AbstractGeometry implements Geometry {
     abstract translate(dx: number, dy: number): void;
     abstract clone(): Geometry;
     abstract accept(visitor: GeometryVisitor): void;
-    
-    async asText(): Promise<string> {
-        const { default: WktVisitor } = await import('./WktVisitor');
+ 
+    asText(): string {
         const wktVisitor = new WktVisitor();
+        this.accept(wktVisitor);
         return wktVisitor.getResult();
     }
 }

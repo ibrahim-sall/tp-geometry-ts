@@ -55,4 +55,11 @@ describe("test LineString", () => {
                 new Point([6., 9.])]
             ));
     });
+    it("test asText exept the result to be WKT string of the LineString", () => {
+        const l = new LineString([
+            new Point([5., 8.]),
+            new Point([6., 9.])]
+        )
+        expect(l.asText()).to.equal("LINESTRING(5.0 8.0,6.0 9.0)");
+    });
 });

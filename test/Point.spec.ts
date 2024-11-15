@@ -46,6 +46,10 @@ describe("test Point", () => {
         const p = new Point();
         const copy = p.clone();
         expect(p).to.not.equal(copy);});
+    it("test asText exept the result to be WKT string of the point", () => {
+        const p = new Point([3.0,4.0]);
+         expect(p.asText()).to.equal("POINT(3.0 4.0)");
+     })
 });
 
 
