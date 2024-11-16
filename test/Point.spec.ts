@@ -49,7 +49,7 @@ describe("test Point", () => {
     it("test asText exept the result to be WKT string of the point", () => {
         const p = new Point([3.0,4.0]);
          expect(p.asText()).to.equal("POINT(3.0 4.0)");
-     })
+     });
 });
 
 

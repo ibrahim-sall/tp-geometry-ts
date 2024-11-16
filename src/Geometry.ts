@@ -1,4 +1,5 @@
 import GeometryVisitor from './GeometryVisitor';
+
 export default interface Geometry {
     getType() : string;
     isEmpty() : boolean;
@@ -6,4 +7,5 @@ export default interface Geometry {
     clone() : Geometry;
     accept(visitor: GeometryVisitor): void;
     asText(): string; //format WKT
+    
 }

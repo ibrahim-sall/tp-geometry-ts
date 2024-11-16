@@ -1,6 +1,8 @@
 import "mocha";
 import { expect } from "chai";
 import EnvelopeBuilder from "../src/EnvelopeBuilder";
+import Point from "../src/Point";
+import LineString from "../src/LineString";
 
 describe("test EnvelopeBuilder", () => {
     it ("test default constructor", () => {
@@ -33,5 +35,25 @@ describe("test EnvelopeBuilder", () => {
         const env2 = envb.build();
         expect(env2.getXmin()).to.equal(0.);
         expect(env2.getYmin()).to.not.equal(4.);
+    });
+    it ("test visitPoint", () => {
+        const envb = new EnvelopeBuilder();
+        envb.visitPoint(new Point([1., 3.]));
+        const env = envb.build();
+        expect(env.getXmin()).to.equal(1.);
+        expect(env.getYmin()).to.equal(3.);
+    });
+    it ("test visitLineString", () => {
+        const envb = new EnvelopeBuilder();
+        const line = new LineString([
+            new Point([1., 8.]),
+            new Point([6., 9.])]
+        );
+        envb.visitLineString(line);
+        const env = envb.build();
+        expect(env.getXmin()).to.equal(1.);
+        expect(env.getYmin()).to.equal(8.);
+        expect(env.getXmax()).to.equal(6.);
+        expect(env.getYmax()).to.equal(9.);
     });
 });

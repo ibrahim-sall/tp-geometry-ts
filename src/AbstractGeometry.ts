@@ -1,6 +1,8 @@
 import Geometry from './Geometry';
 import GeometryVisitor from './GeometryVisitor';
 import WktVisitor from './WktVisitor';
+import EnvelopeBuilder from './EnvelopeBuilder';
+import Envelope from './Envelope';
 
 export default abstract class AbstractGeometry implements Geometry {
     abstract getType(): string;
@@ -13,5 +15,10 @@ export default abstract class AbstractGeometry implements Geometry {
         const wktVisitor = new WktVisitor();
         this.accept(wktVisitor);
         return wktVisitor.getResult();
+    }
+    getEnvelope(): Envelope {
+        const envelopeBuilder = new EnvelopeBuilder();
+        this.accept(envelopeBuilder);
+        return envelopeBuilder.build();
     }
 }
