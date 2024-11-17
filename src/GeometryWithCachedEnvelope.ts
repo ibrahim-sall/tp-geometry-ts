@@ -1,34 +1,49 @@
 import Geometry from "./Geometry";
 import GeometryVisitor from "./GeometryVisitor";
+import Envelope from "./Envelope";
+import EnvelopeBuilder from "./EnvelopeBuilder";
+
 
 export default class GeometryWithCachedEnvelope implements Geometry{
     private original : Geometry;
+    private cachedEnvelope?: Envelope
 
     constructor(original: Geometry) {
         this.original = original;
     }
 
-    public getType() : string{
+    getType(): string {
         return this.original.getType();
     }
 
-    public isEmpty() : boolean{
+    isEmpty(): boolean {
         return this.original.isEmpty();
     }
 
-    public translate(dx: number, dy:number): void{
+    translate(dx: number, dy: number): void {
         this.original.translate(dx, dy);
-    };
-    public clone() : Geometry{
-        return this.original.clone();
+        this.cachedEnvelope = undefined; // Invalidate cache
     }
 
-    public accept(visitor: GeometryVisitor): void {
-        this.accept(visitor);
+    clone(): Geometry {
+        return new GeometryWithCachedEnvelope(this.original.clone());
     }
 
-    public asText(): string {
+    accept(visitor: GeometryVisitor): void {
+        this.original.accept(visitor);
+    }
+
+    asText(): string {
         return this.original.asText();
+    }
+
+    getEnvelope(): Envelope {
+        if (!this.cachedEnvelope) {
+            const envelopeBuilder = new EnvelopeBuilder();
+            this.original.accept(envelopeBuilder);
+            this.cachedEnvelope = envelopeBuilder.build();
+        }
+        return this.cachedEnvelope;
     }
 
 }
