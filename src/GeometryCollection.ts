@@ -43,10 +43,8 @@ export default class GeometryCollection extends AbstractGeometry implements Geom
         return geometriescopy;
     }
     accept(visitor: GeometryVisitor): void {
-        if (this.geometries) {
-            for (const geometry of this.geometries) {
-                geometry.accept(visitor);
-            }
-        }
+
+        visitor.visitGeometryCollection(this);
+
     }
 }

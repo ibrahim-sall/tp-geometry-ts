@@ -3,6 +3,7 @@ import Point from "./Point";
 import LineString from "./LineString";
 import GeometryCollection from "./GeometryCollection";
 
+
 export default class WktVisitor implements GeometryVisitor {
     buffer: string = "";
 
@@ -26,19 +27,15 @@ export default class WktVisitor implements GeometryVisitor {
         this.buffer +=  lineString.getType().toUpperCase() + "(" + wkt + ")";
     }
     visitGeometryCollection(geometries: GeometryCollection): void {
-        let wkt = "GEOMETRYCOLLECTION(";
-        for (let i = 0; i < geometries.getNumGeometries(); i++) {
-            const geometry = geometries.getGeometryN(i);
-            geometry.accept(this);
-            wkt += this.buffer;
-            this.buffer = "";
-            if (i < geometries.getNumGeometries() - 1) {
-                wkt += ",";
-            }
-            if (i === geometries.getNumGeometries() - 1) {
-                wkt += ")";
+        this.buffer += 'GEOMETRYCOLLECTION(';
+
+        for (let index = 0; index < geometries.getNumGeometries(); index++) {
+            geometries.getGeometryN(index).accept(this);
+            if (index < geometries.getNumGeometries() - 1) {
+                this.buffer += ',';
             }
         }
-        this.buffer = wkt;
+
+        this.buffer += ')';
     }
 }
